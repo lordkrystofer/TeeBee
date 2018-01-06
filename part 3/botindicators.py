@@ -37,11 +37,11 @@ class BotIndicators(object):
 		rsi[:period] = 100. - 100./(1. + rs)
  
 		for i in range(period, len(prices)):
- 			delta = deltas[i - 1]  # cause the diff is 1 shorter
-  			if delta > 0:
- 				upval = delta
- 				downval = 0.
- 			else:
+			delta = deltas[i - 1]  # cause the diff is 1 shorter
+			if delta > 0:
+				upval = delta
+				downval = 0.
+			else:
  				upval = 0.
  				downval = -delta
  
