@@ -3,6 +3,7 @@ import sys, getopt
 import datetime
 
 
+
 # understanding this fucking command line garbage
 # There are three types of arguments
 # 1 - a dashed single letter option  such as -c -q or -h  with NO argument
@@ -26,8 +27,13 @@ import datetime
 
 def main(argv):
     # Parse the options and arguments
+
+    period = 1;
+    startTime = False
+    endTime = False
+
     try:
-        opts, args = getopt.getopt(argv, "hc:", ["period=", "currency=", "points="])
+        opts, args = getopt.getopt(argv, "hc:p:", ["period=", "currency=", "points="])
     except getopt.GetoptError:
         print('teebee.py error parsing arguments')
         sys.exit(2)
@@ -36,9 +42,22 @@ def main(argv):
         if opt == '-h':
             print('help message here')
             sys.exit()
+
+        elif opt in ("-p", "--period"):
+            #if (int(arg) in [300,900,1800,7200,14400,86400]):
+            period = arg
+            #else:
+            # #	print 'Poloniex requires periods in 300,900,1800,7200,14400, or 86400 second increments'
+			#	sys.exit(2)
         elif opt in ("-c", "--currency"):
             print(arg)
 
+
+    while True:
+        print("{} Ok I'm doing Stuff".format(datetime.datetime.now()))
+
+        if (not startTime):
+            time.sleep(int(period))
 
 if __name__ == "__main__":
     main(sys.argv[1:])
